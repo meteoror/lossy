@@ -5,11 +5,20 @@ async function loadFile(filepath) {
     return response.text();
 }
 
-function removeClarifyingClauses(text, conjunctions) {
+function chunkRemoveClauses(text, conjunctions) {
     const conjunctionsPattern = conjunctions.map(c => `\\b${c}\\b`).join('|');
     const regex = new RegExp(`,\\s*((${conjunctionsPattern}).*?)\\s*,`, 'gi');
     return text.replace(regex, '');
 }
+
+function removeClauses(text, conjunctions) {
+    const conjunctionsPattern = conjunctions.map(c => `\\b${c}\\b`).join('|');
+    // Updated regex to ensure there are no periods between the commas
+    const regex = new RegExp(`,\\s*((${conjunctionsPattern})[^.]*?)\\s*,`, 'gi');
+    
+    return text.replace(regex, '');
+}
+
 
 function removeAdjectives(text, adjectives) {
     const adjectivePattern = adjectives.map(adj => `\\b${adj}\\b`).join('|');
@@ -34,7 +43,7 @@ async function processText() {
     const adjectives = (await loadFile('adjectives.txt')).split('\n').map(line => line.trim());
     const conjunctions = (await loadFile('conjunctions.txt')).split('\n').map(line => line.trim());
 
-    const cleanedText = removeClarifyingClauses(originalText, conjunctions);
+    const cleanedText = chunkRemoveClauses(originalText, conjunctions);
     const ultracleanedText = removeAdjectives(cleanedText, adjectives);
     const finalText = splitParagraph(ultracleanedText);
 
