@@ -7,7 +7,8 @@ async function loadFile(filepath) {
 
 function removeClarifyingClauses(text, conjunctions) {
     const conjunctionsPattern = conjunctions.map(c => `\\b${c}\\b`).join('|');
-    const regex = new RegExp(`,\\s*((${conjunctionsPattern}).*?)\\s*,`, 'gi');
+    const regex = new RegExp(`,\\s*((${conjunctionsPattern})[^.]*?)\\s*,`, 'gi');
+    
     return text.replace(regex, '');
 }
 
