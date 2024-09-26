@@ -1,4 +1,6 @@
 // Utility functions to read file content
+console.log('JavaScript file is loaded');
+
 async function loadFile(filepath) {
     const response = await fetch(filepath);
     if (!response.ok) throw new Error(`Failed to load ${filepath}`);
