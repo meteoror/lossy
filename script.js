@@ -68,7 +68,7 @@ async function processText() {
 
     // Update UI with results
     document.getElementById('output-text').innerText = cleanedText;
-    document.getElementById('output-percentage').innerText = `Total Cleaning: ${totalPercentage}%`;
+    document.getElementById('output-percentage').innerText = `cleaning: ${totalPercentage}%`;
 }
 
 // Event listeners for compression
@@ -76,6 +76,6 @@ document.getElementById('compress-btn').addEventListener('click', processText);
 
 // Change the displayed text when toggled
 document.getElementById('toggle-compression').addEventListener('change', function() {
-    const modeText = this.checked ? 'Heavy Compression' : 'Basic Compression';
+    const modeText = this.checked ? 'chunk' : 'segment';
     document.getElementById('compression-mode').innerText = modeText;
 });
