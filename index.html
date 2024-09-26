@@ -12,14 +12,27 @@
         <h1>lossy</h1>
         <textarea id="input-text" placeholder="enter or paste text"></textarea>
         
-        <div class="compression-slider">
-            <label for="compression-range">compression:</label>
-            <input type="range" id="compression-range" min="1" max="3" value="1">
-            <span id="compression-value">1</span>
+        <!-- Toggle switches for different actions -->
+        <div class="toggles">
+            <div>
+                <label for="toggle-chunkRemove">Remove Clauses in Chunks</label>
+                <input type="checkbox" id="toggle-chunkRemove">
+            </div>
+            <div>
+                <label for="toggle-clauseRemove">Remove Regular Clauses</label>
+                <input type="checkbox" id="toggle-clauseRemove">
+            </div>
+            <div>
+                <label for="toggle-adjectiveRemove">Remove Adjectives</label>
+                <input type="checkbox" id="toggle-adjectiveRemove">
+            </div>
+            <div>
+                <label for="toggle-notate">Apply Notation</label>
+                <input type="checkbox" id="toggle-notate">
+            </div>
         </div>
 
         <button id="compress-btn">compress</button>
-        <button id="notate-btn">notate</button>
 
         <div class="output">
             <h3>compressed text:</h3>
