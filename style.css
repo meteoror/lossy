@@ -23,6 +23,8 @@ textarea {
     margin-bottom: 20px;
     padding: 10px;
     font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
@@ -34,6 +36,7 @@ button {
     border: none;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 button:hover {
@@ -47,4 +50,42 @@ button:hover {
 p {
     font-size: 16px;
     color: #333;
+}
+
+/* Styling for the toggle switches section */
+.toggles {
+    margin-bottom: 20px;
+}
+
+.toggles div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.toggles label {
+    font-size: 16px;
+    color: #333;
+}
+
+.toggles input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* General input and output styling */
+#output-text {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-height: 100px;
+}
+
+#output-percentage {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
 }

@@ -12,6 +12,26 @@
         <h1>lossy</h1>
         <textarea id="input-text" placeholder="enter or paste text"></textarea>
         
+        <!-- Toggle switches for different actions -->
+        <div class="toggles">
+            <div>
+                <label for="toggle-chunkRemove">heavy compression</label>
+                <input type="checkbox" id="toggle-chunkRemove">
+            </div>
+            <div>
+                <label for="toggle-clauseRemove">basic compression<label>
+                <input type="checkbox" id="toggle-clauseRemove">
+            </div>
+            <div>
+                <label for="toggle-adjectiveRemove">extra compression</label>
+                <input type="checkbox" id="toggle-adjectiveRemove">
+            </div>
+            <div>
+                <label for="toggle-notate">notate mode</label>
+                <input type="checkbox" id="toggle-notate">
+            </div>
+        </div>
+
         <button id="compress-btn">compress</button>
 
         <div class="output">
@@ -20,6 +40,7 @@
             <h3>percentage statistics:</h3>
             <p id="output-percentage"></p>
         </div>
+
     </div>
 
     <script src="script.js"></script>

@@ -15,10 +15,8 @@ function removeClauses(text, conjunctions) {
     const conjunctionsPattern = conjunctions.map(c => `\\b${c}\\b`).join('|');
     // Updated regex to ensure there are no periods between the commas
     const regex = new RegExp(`,\\s*((${conjunctionsPattern})[^.]*?)\\s*,`, 'gi');
-    
     return text.replace(regex, '');
 }
-
 
 function removeAdjectives(text, adjectives) {
     const adjectivePattern = adjectives.map(adj => `\\b${adj}\\b`).join('|');
@@ -43,16 +41,38 @@ async function processText() {
     const adjectives = (await loadFile('adjectives.txt')).split('\n').map(line => line.trim());
     const conjunctions = (await loadFile('conjunctions.txt')).split('\n').map(line => line.trim());
 
-    const cleanedText = chunkRemoveClauses(originalText, conjunctions);
-    const ultracleanedText = removeAdjectives(cleanedText, adjectives);
-    const finalText = splitParagraph(ultracleanedText);
+    let cleanedText = originalText;
 
-    const basicPercentage = calculatePercentageRemoved(originalText, cleanedText);
-    const extraPercentage = calculatePercentageRemoved(cleanedText, ultracleanedText);
-    const totalPercentage = calculatePercentageRemoved(originalText, ultracleanedText);
+    // Apply actions based on toggles
+    const isChunkRemove = document.getElementById('toggle-chunkRemove').checked;
+    const isClauseRemove = document.getElementById('toggle-clauseRemove').checked;
+    const isAdjectiveRemove = document.getElementById('toggle-adjectiveRemove').checked;
+    const isNotate = document.getElementById('toggle-notate').checked;
 
-    document.getElementById('output-text').innerText = finalText;
-    document.getElementById('output-percentage').innerText = `sentence cleaning:${basicPercentage}%\n word cleaning:${extraPercentage}%\n total cleaning:${totalPercentage}%`;
+    // Apply transformations
+    if (isChunkRemove) {
+        cleanedText = chunkRemoveClauses(cleanedText, conjunctions);
+    }
+
+    if (isClauseRemove) {
+        cleanedText = removeClauses(cleanedText, conjunctions);
+    }
+
+    if (isAdjectiveRemove) {
+        cleanedText = removeAdjectives(cleanedText, adjectives);
+    }
+
+    // Optionally apply paragraph splitting (notation)
+    if (isNotate) {
+        cleanedText = splitParagraph(cleanedText);
+    }
+
+    const totalPercentage = calculatePercentageRemoved(originalText, cleanedText);
+
+    // Update UI with results
+    document.getElementById('output-text').innerText = cleanedText;
+    document.getElementById('output-percentage').innerText = `total cleaning: ${totalPercentage}%`;
 }
 
+// Event listeners for compression
 document.getElementById('compress-btn').addEventListener('click', processText);
