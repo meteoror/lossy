@@ -26,20 +26,23 @@ function calculatePercentageRemoved(originalText, compressedText) {
     return (((originalLength - compressedLength) / originalLength) * 100).toFixed(2);
 }
 
-async function processText() {
+// Function to split the paragraphs by replacing periods with newlines
+function splitParagraph(text) {
+    return text.replace(/\.\s*/g, '.\n -');
+}
+
+function processText() {
     const originalText = document.getElementById('input-text').value;
-    
-    const adjectives = (await loadFile('adjectives.txt')).split('\n').map(line => line.trim());
-    const conjunctions = (await loadFile('conjunctions.txt')).split('\n').map(line => line.trim());
 
     const cleanedText = removeClarifyingClauses(originalText, conjunctions);
     const ultracleanedText = removeAdjectives(cleanedText, adjectives);
+    const finalText = splitParagraph(ultracleanedText);  // Split paragraphs
 
     const basicPercentage = calculatePercentageRemoved(originalText, cleanedText);
     const extraPercentage = calculatePercentageRemoved(cleanedText, ultracleanedText);
     const totalPercentage = calculatePercentageRemoved(originalText, ultracleanedText);
 
-    document.getElementById('output-text').innerText = ultracleanedText;
+    document.getElementById('output-text').innerText = finalText;
     document.getElementById('output-percentage').innerText = `You saved ${basicPercentage}% with basic cleaning, and ${extraPercentage}% with advanced cleaning, for a total of ${totalPercentage}% removal!`;
 }
 
