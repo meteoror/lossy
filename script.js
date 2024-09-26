@@ -72,18 +72,17 @@ async function processText() {
 }
 
 async function copyText() {
-  // Get the text field
-  var copyText = document.getElementById("output-text").innerText;
+    // Get the text from the output-text element
+    var copyText = document.getElementById("output-text").innerText;
 
-  // Select the text field
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
-
-   // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText.value);
-
-  // Alert the copied text
-  alert("copied text!!");
+    // Copy the text to the clipboard using the Clipboard API
+    try {
+        await navigator.clipboard.writeText(copyText);
+        alert("Copied text!");
+    } catch (err) {
+        alert("Failed to copy text");
+        console.error("Failed to copy text: ", err);
+    }
 }
 
 // Event listeners for compression
