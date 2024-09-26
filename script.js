@@ -35,48 +35,44 @@ function splitParagraph(text) {
     return text.replace(/\.\s*/g, '.\n -');
 }
 
-async function processText(applyNotate = false) {
+async function processText() {
     const originalText = document.getElementById('input-text').value;
-    const compressionAmount = document.getElementById('compression-range').value;
     
     const adjectives = (await loadFile('adjectives.txt')).split('\n').map(line => line.trim());
     const conjunctions = (await loadFile('conjunctions.txt')).split('\n').map(line => line.trim());
 
     let cleanedText = originalText;
 
-    // Apply compression based on slider value
-    if (compressionAmount == 1) {
-        // Only remove adjectives
-        cleanedText = removeAdjectives(cleanedText, adjectives);
-    } 
-    else if (compressionAmount == 2) {
-        // Remove adjectives and regular clarifying clauses
-        cleanedText = removeAdjectives(cleanedText, adjectives);
+    // Apply actions based on toggles
+    const isChunkRemove = document.getElementById('toggle-chunkRemove').checked;
+    const isClauseRemove = document.getElementById('toggle-clauseRemove').checked;
+    const isAdjectiveRemove = document.getElementById('toggle-adjectiveRemove').checked;
+    const isNotate = document.getElementById('toggle-notate').checked;
+
+    // Apply transformations
+    if (isChunkRemove) {
+        cleanedText = chunkRemoveClauses(cleanedText, conjunctions);
+    }
+
+    if (isClauseRemove) {
         cleanedText = removeClauses(cleanedText, conjunctions);
-    } 
-    else if (compressionAmount == 3) {
-        // Chunk remove clauses first, then remove adjectives
-        cleanedText = chunkRemoveClauses(originalText, conjunctions);
+    }
+
+    if (isAdjectiveRemove) {
         cleanedText = removeAdjectives(cleanedText, adjectives);
     }
 
     // Optionally apply paragraph splitting (notation)
-    if (applyNotate) {
+    if (isNotate) {
         cleanedText = splitParagraph(cleanedText);
     }
 
-    const basicPercentage = calculatePercentageRemoved(originalText, cleanedText);
     const totalPercentage = calculatePercentageRemoved(originalText, cleanedText);
 
+    // Update UI with results
     document.getElementById('output-text').innerText = cleanedText;
-    document.getElementById('output-percentage').innerText = `compression amount: ${compressionAmount}\n total cleaning: ${totalPercentage}%`;
+    document.getElementById('output-percentage').innerText = `total cleaning: ${totalPercentage}%`;
 }
 
-// Event listeners for compression and notate
-document.getElementById('compress-btn').addEventListener('click', () => processText(false));
-document.getElementById('notate-btn').addEventListener('click', () => processText(true));
-
-// Update slider label when value changes
-document.getElementById('compression-range').addEventListener('input', function() {
-    document.getElementById('compression-value').innerText = this.value;
-});
+// Event listeners for compression
+document.getElementById('compress-btn').addEventListener('click', processText);
