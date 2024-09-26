@@ -14,20 +14,20 @@
         
         <!-- Toggle switches for different actions -->
         <div class="toggles">
-            <div>
-                <label for="toggle-chunkRemove">heavy compression</label>
-                <input type="checkbox" id="toggle-chunkRemove">
+            <div class="toggle-container">
+                <label for="toggle-compression">Compression Mode:</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="toggle-compression">
+                    <span class="slider"></span>
+                </div>
+                <span id="compression-mode">Basic Compression</span>
             </div>
             <div>
-                <label for="toggle-clauseRemove">basic compression<label>
-                <input type="checkbox" id="toggle-clauseRemove">
-            </div>
-            <div>
-                <label for="toggle-adjectiveRemove">extra compression</label>
+                <label for="toggle-adjectiveRemove">Extra Compression</label>
                 <input type="checkbox" id="toggle-adjectiveRemove">
             </div>
             <div>
-                <label for="toggle-notate">notate mode</label>
+                <label for="toggle-notate">Notate Mode</label>
                 <input type="checkbox" id="toggle-notate">
             </div>
         </div>
