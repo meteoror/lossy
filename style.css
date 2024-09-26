@@ -78,54 +78,80 @@ p {
     height: 0;
 }
 
-.button-container {
+.checkbox-container {
     display: flex;
-    justify-content: center; /* Center the buttons */
-    margin-bottom: 20px;    /* Space below the button container */
+    justify-content: center; /* Center the checkboxes */
+    margin-bottom: 20px;    /* Space below the checkbox container */
 }
 
-.button {
-    position: relative;
-    display: inline-block;
-    width: 150px; /* Set width for button */
-    height: 60px; /* Set height for button */
-    margin: 0 10px; /* Space between buttons */
-    background-color: #eee; /* Default background color */
-    border-radius: 5px; /* Rounded corners */
-    text-align: center; /* Center the text */
-    line-height: 60px; /* Center text vertically */
-    font-size: 18px; /* Text size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition */
+.checkbox-item {
+    margin-right: 20px; /* Space between the checkboxes */
 }
 
-/* Hide the default checkbox */
-.button input {
-    display: none; /* Hide the checkbox */
+.checkbox-item:last-child {
+    margin-right: 0; /* Remove margin for the last item */
 }
 
-/* Change background color when checked */
-.button input:checked + .button-text {
-    background-color: #2196F3; /* Change to desired color when checked */
-    color: white; /* Text color when checked */
+/* Include the custom checkbox styles here (the CSS you provided) */
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-/* Change background color on hover */
-.button:hover {
-    background-color: #ccc; /* Change background color on hover */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
-/* Change button color when checked */
-.button input:checked {
-    background-color: #5cb85c; /* Background color when pressed */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
 }
 
-/* Style for button text */
-.button-text {
-    display: block; /* Make text a block element */
-    height: 100%; /* Full height for vertical centering */
-    color: #333; /* Default text color */
-    transition: background-color 0.3s; /* Smooth transition for text */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 /* No changes in the slider styles */
