@@ -3,18 +3,18 @@ console.log('JavaScript file is loaded');
 
 async function loadFile(filepath) {
     const response = await fetch(filepath);
-    if (!response.ok) throw new Error(`Failed to load ${filepath}`);
+    if (!response.ok) throw new Error(Failed to load ${filepath});
     return response.text();
 }
 
 function removeClarifyingClauses(text, conjunctions) {
-    const conjunctionsPattern = conjunctions.map(c => `\\b${c}\\b`).join('|');
-    const regex = new RegExp(`,\\s*((${conjunctionsPattern}).*?)\\s*,`, 'gi');
+    const conjunctionsPattern = conjunctions.map(c => \\b${c}\\b).join('|');
+    const regex = new RegExp(,\\s*((${conjunctionsPattern}).*?)\\s*,, 'gi');
     return text.replace(regex, '');
 }
 
 function removeAdjectives(text, adjectives) {
-    const adjectivePattern = adjectives.map(adj => `\\b${adj}\\b`).join('|');
+    const adjectivePattern = adjectives.map(adj => \\b${adj}\\b).join('|');
     const regex = new RegExp(adjectivePattern, 'gi');
     return text.replace(regex, '').replace(/\s+/g, ' ').trim();
 }
@@ -43,7 +43,7 @@ function processText() {
     const totalPercentage = calculatePercentageRemoved(originalText, ultracleanedText);
 
     document.getElementById('output-text').innerText = finalText;
-    document.getElementById('output-percentage').innerText = `You saved ${basicPercentage}% with basic cleaning, and ${extraPercentage}% with advanced cleaning, for a total of ${totalPercentage}% removal!`;
+    document.getElementById('output-percentage').innerText = You saved ${basicPercentage}% with basic cleaning, and ${extraPercentage}% with advanced cleaning, for a total of ${totalPercentage}% removal!;
 }
 
 document.getElementById('compress-btn').addEventListener('click', processText);
