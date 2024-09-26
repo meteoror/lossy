@@ -44,17 +44,14 @@ async function processText() {
     let cleanedText = originalText;
 
     // Apply actions based on toggles
-    const isChunkRemove = document.getElementById('toggle-chunkRemove').checked;
-    const isClauseRemove = document.getElementById('toggle-clauseRemove').checked;
+    const isCompressionToggled = document.getElementById('toggle-compression').checked;
     const isAdjectiveRemove = document.getElementById('toggle-adjectiveRemove').checked;
     const isNotate = document.getElementById('toggle-notate').checked;
 
     // Apply transformations
-    if (isChunkRemove) {
+    if (isCompressionToggled) {
         cleanedText = chunkRemoveClauses(cleanedText, conjunctions);
-    }
-
-    if (isClauseRemove) {
+    } else {
         cleanedText = removeClauses(cleanedText, conjunctions);
     }
 
@@ -71,8 +68,14 @@ async function processText() {
 
     // Update UI with results
     document.getElementById('output-text').innerText = cleanedText;
-    document.getElementById('output-percentage').innerText = `total cleaning: ${totalPercentage}%`;
+    document.getElementById('output-percentage').innerText = `Total Cleaning: ${totalPercentage}%`;
 }
 
 // Event listeners for compression
 document.getElementById('compress-btn').addEventListener('click', processText);
+
+// Change the displayed text when toggled
+document.getElementById('toggle-compression').addEventListener('change', function() {
+    const modeText = this.checked ? 'Heavy Compression' : 'Basic Compression';
+    document.getElementById('compression-mode').innerText = modeText;
+});
