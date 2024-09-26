@@ -28,7 +28,7 @@ function calculatePercentageRemoved(originalText, compressedText) {
 
 // Function to split the paragraphs by replacing periods with newlines
 function splitParagraph(text) {
-    return text.replace(/\.\s*/g, '.\n -');
+    return text.replace(/\. /g, '.\n - ');  // Ensure space after period is considered
 }
 
 function processText() {
