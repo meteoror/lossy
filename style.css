@@ -58,8 +58,10 @@ p {
 /* Toggle switch styles */
 .toggle-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;    /* Center the items */
+    justify-content: center; /* Center the items vertically */
+    margin-bottom: 20px;    /* Space below the toggle */
 }
 
 .toggle-switch {
@@ -67,6 +69,7 @@ p {
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-bottom: 8px; /* Space between toggle and label */
 }
 
 .toggle-switch input {
@@ -75,6 +78,7 @@ p {
     height: 0;
 }
 
+/* No changes in the slider styles */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -106,6 +110,8 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(26px);
 }
+
+/* Other styles remain unchanged */
 
 /* General input and output styling */
 #output-text {
