@@ -32,7 +32,7 @@ function calculatePercentageRemoved(originalText, compressedText) {
 }
 
 function splitParagraph(text) {
-    return text.replace(/\.\s*/g, '.\n -');
+    return text.replace(/\.\s*/g, '.\n -    ');
 }
 
 async function processText() {
