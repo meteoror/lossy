@@ -2,19 +2,21 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     padding: 20px;
+    margin: 0;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 600px; /* Adjusted for a more minimalistic layout */
     margin: 0 auto;
     background-color: white;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
+    font-size: 2.5em; /* Slightly larger font size for the title */
 }
 
 textarea {
@@ -25,13 +27,14 @@ textarea {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    resize: none; /* Prevent resizing */
 }
 
 button {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #5cb85c;
+    background-color: #28a745; /* Bootstrap green */
     color: white;
     border: none;
     font-size: 16px;
@@ -40,7 +43,7 @@ button {
 }
 
 button:hover {
-    background-color: #4cae4c;
+    background-color: #218838; /* Darker green for hover effect */
 }
 
 .output {
@@ -52,27 +55,56 @@ p {
     color: #333;
 }
 
-/* Styling for the toggle switches section */
-.toggles {
-    margin-bottom: 20px;
-}
-
-.toggles div {
+/* Toggle switch styles */
+.toggle-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
 }
 
-.toggles label {
-    font-size: 16px;
-    color: #333;
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
 }
 
-.toggles input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
     cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #5cb85c;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
 }
 
 /* General input and output styling */
