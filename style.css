@@ -48,3 +48,18 @@ p {
     font-size: 16px;
     color: #333;
 }
+
+.compression-slider {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#compression-range {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#compression-value {
+    font-weight: bold;
+}
