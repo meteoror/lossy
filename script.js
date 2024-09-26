@@ -43,7 +43,7 @@ async function processText() {
     const totalPercentage = calculatePercentageRemoved(originalText, ultracleanedText);
 
     document.getElementById('output-text').innerText = finalText;
-    document.getElementById('output-percentage').innerText = `You saved ${basicPercentage}% with basic cleaning, and ${extraPercentage}% with advanced cleaning, for a total of ${totalPercentage}% removal!`;
+    document.getElementById('output-percentage').innerText = `sentence cleaning:${basicPercentage}%\n word cleaning:${extraPercentage}%\n total cleaning:${totalPercentage}%`;
 }
 
 document.getElementById('compress-btn').addEventListener('click', processText);
