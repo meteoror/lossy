@@ -71,8 +71,23 @@ async function processText() {
     document.getElementById('output-percentage').innerText = `cleaning: ${totalPercentage}%`;
 }
 
+async function copyText() {
+    // Get the text from the output-text element
+    var copyText = document.getElementById("output-text").innerText;
+
+    // Copy the text to the clipboard using the Clipboard API
+    try {
+        await navigator.clipboard.writeText(copyText);
+        alert("Copied text!");
+    } catch (err) {
+        alert("Failed to copy text");
+        console.error("Failed to copy text: ", err);
+    }
+}
+
 // Event listeners for compression
 document.getElementById('compress-btn').addEventListener('click', processText);
+document.getElementById('copy-btn').addEventListener('click', copyText);
 
 // Change the displayed text when toggled
 document.getElementById('toggle-compression').addEventListener('change', function() {

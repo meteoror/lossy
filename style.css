@@ -58,8 +58,10 @@ p {
 /* Toggle switch styles */
 .toggle-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;    /* Center the items */
+    justify-content: center; /* Center the items vertically */
+    margin-bottom: 20px;    /* Space below the toggle */
 }
 
 .toggle-switch {
@@ -67,6 +69,7 @@ p {
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-bottom: 8px; /* Space between toggle and label */
 }
 
 .toggle-switch input {
@@ -75,6 +78,83 @@ p {
     height: 0;
 }
 
+.checkbox-container {
+    display: flex;
+    justify-content: center; /* Center the checkboxes */
+    margin-bottom: 20px;    /* Space below the checkbox container */
+}
+
+.checkbox-item {
+    margin-right: 20px; /* Space between the checkboxes */
+}
+
+.checkbox-item:last-child {
+    margin-right: 0; /* Remove margin for the last item */
+}
+
+/* Include the custom checkbox styles here (the CSS you provided) */
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* No changes in the slider styles */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -106,6 +186,8 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(26px);
 }
+
+/* Other styles remain unchanged */
 
 /* General input and output styling */
 #output-text {
